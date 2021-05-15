@@ -16,6 +16,7 @@ namespace RpgAplication.Database
             optionsBuilder.UseSqlServer(connectionString);
             base.OnConfiguring(optionsBuilder);
         }
-        public DbSet<RpgAplication.Models.UserModel> UserModel { get; set; }
+        public DbSet<UserModel> Users { get; set; }
+        public DbSet<RoleModel> Roles { get; set; }
     }
 }

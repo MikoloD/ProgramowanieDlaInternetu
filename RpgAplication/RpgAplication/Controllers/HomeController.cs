@@ -21,11 +21,6 @@ namespace RpgAplication.Controllers
 
         public IActionResult Index()
         {
-            using (DatabaseContext context = new DatabaseContext())
-            {
-                context.Database.EnsureCreated();
-                context.SaveChanges();
-            }
             return View();
         }
 
