@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using RpgApplication.Areas.Identity.Data;
 using RpgApplication.Models;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace RpgApplication.Controllers
 
         public IActionResult Index()
         {
-            return View();
+                return View();
         }
 
         public IActionResult Privacy()
