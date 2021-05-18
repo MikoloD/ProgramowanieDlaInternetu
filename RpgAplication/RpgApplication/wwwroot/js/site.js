@@ -2,3 +2,5 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
+$(document).ready(function () { $('li').find('a[href="' + location.pathname + '"]').closest('li').addClass('active'); });
