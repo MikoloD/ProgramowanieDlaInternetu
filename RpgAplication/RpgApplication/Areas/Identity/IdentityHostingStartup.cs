@@ -19,7 +19,8 @@ namespace RpgApplication.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("DatabaseContextConnection")));
 
-                services.AddDefaultIdentity<UserModel>(options => options.SignIn.RequireConfirmedAccount = true)
+                services.AddDefaultIdentity<UserModel>(options => options.SignIn.RequireConfirmedEmail = false)   
+                    .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<DatabaseContext>();
             });
         }

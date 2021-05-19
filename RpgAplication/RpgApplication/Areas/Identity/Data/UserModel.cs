@@ -10,5 +10,6 @@ namespace RpgApplication.Areas.Identity.Data
     // Add profile data for application users by adding properties to the UserModel class
     public class UserModel : IdentityUser
     {
+
     }
 }

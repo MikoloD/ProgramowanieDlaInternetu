@@ -1,0 +1,27 @@
+﻿@{
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout))
+    {
+        Layout = (string)parentLayout;
+    }
+    else
+    {
+        Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+    }
+}
+
+<div class="card text-white bg-dark my-5 mx-5 opacity-card">
+    <div class="card-body">
+        <h3 class="card-title">Zarządzanie kontem</h3>
+        <h5 class="card-subtitle mb-2 text-muted">Zmień ustawnienia konta</h5>
+        <div class="col-md-3">
+            <partial name="_ManageNav" />
+        </div>
+        <div class="col-md-9">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}
