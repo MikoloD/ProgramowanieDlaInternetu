@@ -16,3 +16,7 @@ body {
 .opacity-card {
     opacity: 0.9 !important;
 }
+
+.bg-card {
+    background-image: url("https://raw.githubusercontent.com/vicberg/Roll20-Warhammer-4e-Character-Sheet/master/background.jpg") !important;
+}

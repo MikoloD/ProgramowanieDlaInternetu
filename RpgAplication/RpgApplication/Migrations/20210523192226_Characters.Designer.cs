@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RpgApplication.Areas.Identity.Data;
 
 namespace RpgApplication.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210523192226_Characters")]
+    partial class Characters
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -217,153 +219,6 @@ namespace RpgApplication.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("RpgApplication.Models.MistbornCharacterSheetModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Alchemy")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Block")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Brass")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Bronze")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Calm")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CharacterName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CharacterRole")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Charisma")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Condition")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Copper")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Crafting")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Credibility")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Empathy")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Evede")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Forgery")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Heraldry")
-                        .HasColumnType("int");
-
-                    b.Property<int>("HorseRiding")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Intellect")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Intimidate")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Iron")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Knowledge")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Lead")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Medicine")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MeleWeapon")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Motorics")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Music")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Observatione")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Painting")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Parry")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Percepcion")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Persuasion")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Physique")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Presence")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Psyche")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RangeWeapon")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Sailing")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Steath")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Steel")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Tactics")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Thievery")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ThrowingWeapon")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Tin")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Trait")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Zinc")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MistbornCharacters");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using RpgApplication.Areas.Identity.Data;
+using RpgApplication.Models;
 
 namespace RpgApplication.Areas.Identity.Data
 {
     public class DatabaseContext : IdentityDbContext<UserModel>
     {
+        public DbSet<MistbornCharacterSheetModel> MistbornCharacters { get; set; }
         public DatabaseContext(DbContextOptions<DatabaseContext> options)
             : base(options)
         {

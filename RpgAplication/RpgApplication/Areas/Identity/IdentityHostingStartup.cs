@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RpgApplication.Areas.Identity.Data;
+using RpgApplication.Models;
 
 [assembly: HostingStartup(typeof(RpgApplication.Areas.Identity.IdentityHostingStartup))]
 namespace RpgApplication.Areas.Identity
@@ -15,13 +16,11 @@ namespace RpgApplication.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<DatabaseContext>(options =>
-                    options.UseSqlServer(
-                        context.Configuration.GetConnectionString("DatabaseContextConnection")));
 
                 services.AddDefaultIdentity<UserModel>(options => options.SignIn.RequireConfirmedEmail = false)   
                     .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<DatabaseContext>();
+                
             });
         }
     }

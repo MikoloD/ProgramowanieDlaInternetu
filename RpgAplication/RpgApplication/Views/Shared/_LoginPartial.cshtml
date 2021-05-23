@@ -9,12 +9,15 @@
     {
 
         <li class="nav-item">
+            <a id="create" class="nav-link" asp-area="CharacterCreation" asp-page="/Create" title="Create">Stwórz Kartę postaci!</a>
+        </li>
+        <li class="nav-item">
             <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Jesteś zalogowany jako @UserManager.GetUserName(User)!</a>
         </li>
         if (this.User.IsInRole("Administrator"))
         {
             <li class="nav-item">
-                <a >Admin</a>
+                <a>Admin</a>
             </li>
         }
         <li class="nav-item">
