@@ -1,0 +1,381 @@
+﻿@model RpgApplication.Models.MistbornCharacterSheetModel
+
+@{
+    ViewData["Title"] = "CharacterSheet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card text-dark text-center mt-5 mx-auto opacity-card">
+    <img class="card-img"
+         src="https://raw.githubusercontent.com/vicberg/Roll20-Warhammer-4e-Character-Sheet/master/background.jpg"
+         alt="Card image">
+    <div class="card-img-overlay">
+        <h2 class="card-title">Karta Postaci</h2>
+        <div class="row">
+            <div class="col">
+                <div class="row font-weight-bold">
+                    <div class="col-sm">
+                        @Html.DisplayNameFor(model => model.CharacterName)
+                    </div>
+                    <div class="col-sm">
+                        @Html.DisplayNameFor(model => model.CharacterRole)
+                    </div>
+                    <div class="col-sm">
+                        @Html.DisplayNameFor(model => model.Trait)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        @Html.DisplayFor(model => model.CharacterName)
+                    </div>
+                    <div class="col-sm">
+                        @Html.DisplayFor(model => model.CharacterRole)
+                    </div>
+                    <div class="col-sm">
+                        @Html.DisplayFor(model => model.Trait)
+                    </div>
+                </div>
+                <div class="row mw-100">
+                    <div class="col-sm my-5">
+                        <div class="row justify-content-center">
+                            <h4 class="card-title">Atrybuty</h4>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-9">
+                                @Html.DisplayNameFor(model => model.Percepcion)
+                            </div>
+                            <div class="col-sm">
+                                @Html.DisplayFor(model => model.Percepcion)
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-9">
+                                @Html.DisplayNameFor(model => model.Motorics)
+                            </div>
+                            <div class="col-sm">
+                                @Html.DisplayFor(model => model.Motorics)
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-9">
+                                @Html.DisplayNameFor(model => model.Physique)
+                            </div>
+                            <div class="col-sm">
+                                @Html.DisplayFor(model => model.Physique)
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-9">
+                                @Html.DisplayNameFor(model => model.Psyche)
+                            </div>
+                            <div class="col-sm">
+                                @Html.DisplayFor(model => model.Psyche)
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-9">
+                                @Html.DisplayNameFor(model => model.Intellect)
+                            </div>
+                            <div class="col-sm">
+                                @Html.DisplayFor(model => model.Intellect)
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-9">
+                                @Html.DisplayNameFor(model => model.Presence)
+                            </div>
+                            <div class="col-sm">
+                                @Html.DisplayFor(model => model.Presence)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm my-5">
+                        <div class="row justify-content-center">
+                            <h4 class="card-title">Allomancja</h4>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-9">
+                                @Html.DisplayNameFor(model => model.Steel)
+                            </div>
+                            <div class="col-sm">
+                                @Html.DisplayFor(model => model.Steel)
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-9">
+                                @Html.DisplayNameFor(model => model.Iron)
+                            </div>
+                            <div class="col-sm">
+                                @Html.DisplayFor(model => model.Iron)
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-9">
+                                @Html.DisplayNameFor(model => model.Lead)
+                            </div>
+                            <div class="col-sm">
+                                @Html.DisplayFor(model => model.Lead)
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-9">
+                                @Html.DisplayNameFor(model => model.Tin)
+                            </div>
+                            <div class="col-sm">
+                                @Html.DisplayFor(model => model.Tin)
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-9">
+                                @Html.DisplayNameFor(model => model.Zinc)
+                            </div>
+                            <div class="col-sm">
+                                @Html.DisplayFor(model => model.Zinc)
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-9">
+                                @Html.DisplayNameFor(model => model.Brass)
+                            </div>
+                            <div class="col-sm">
+                                @Html.DisplayFor(model => model.Brass)
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-9">
+                                @Html.DisplayNameFor(model => model.Copper)
+                            </div>
+                            <div class="col-sm">
+                                @Html.DisplayFor(model => model.Copper)
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-9">
+                                @Html.DisplayNameFor(model => model.Bronze)
+                            </div>
+                            <div class="col-sm">
+                                @Html.DisplayFor(model => model.Bronze)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm my-5">
+                        <div class="row justify-content-center">
+                            <h4 class="card-title">@Html.DisplayNameFor(model => model.CharacterAvatarURL)</h4>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-sm">
+                                <img src="@Url.Content(Model.CharacterAvatarURL)" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm my-5">
+                        <h4 class="card-title">Umiejętności</h4>
+                        <div class="row">
+                            <div class="col-sm mx-5">
+                                <div class="row justify-content-center">
+                                    <div class="col-9">
+                                        @Html.DisplayNameFor(model => model.MeleWeapon)
+                                    </div>
+                                    <div class="col-sm">
+                                        @Html.DisplayFor(model => model.MeleWeapon)
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-9">
+                                        @Html.DisplayNameFor(model => model.RangeWeapon)
+                                    </div>
+                                    <div class="col-sm">
+                                        @Html.DisplayFor(model => model.RangeWeapon)
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-9">
+                                        @Html.DisplayNameFor(model => model.ThrowingWeapon)
+                                    </div>
+                                    <div class="col-sm">
+                                        @Html.DisplayFor(model => model.ThrowingWeapon)
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-9">
+                                        @Html.DisplayNameFor(model => model.Evede)
+                                    </div>
+                                    <div class="col-sm">
+                                        @Html.DisplayFor(model => model.Evede)
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-9">
+                                        @Html.DisplayNameFor(model => model.Parry)
+                                    </div>
+                                    <div class="col-sm">
+                                        @Html.DisplayFor(model => model.Parry)
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-9">
+                                        @Html.DisplayNameFor(model => model.Block)
+                                    </div>
+                                    <div class="col-sm">
+                                        @Html.DisplayFor(model => model.Block)
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-9">
+                                        @Html.DisplayNameFor(model => model.Condition)
+                                    </div>
+                                    <div class="col-sm">
+                                        @Html.DisplayFor(model => model.Condition)
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-9">
+                                        @Html.DisplayNameFor(model => model.Steath)
+                                    </div>
+                                    <div class="col-sm">
+                                        @Html.DisplayFor(model => model.Steath)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm mx-5">
+                                <div class="row justify-content-center">
+                                    <div class="col-9">
+                                        @Html.DisplayNameFor(model => model.Thievery)
+                                    </div>
+                                    <div class="col-sm">
+                                        @Html.DisplayFor(model => model.Thievery)
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-9">
+                                        @Html.DisplayNameFor(model => model.Observatione)
+                                    </div>
+                                    <div class="col-sm">
+                                        @Html.DisplayFor(model => model.Observatione)
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-9">
+                                        @Html.DisplayNameFor(model => model.Forgery)
+                                    </div>
+                                    <div class="col-sm">
+                                        @Html.DisplayFor(model => model.Forgery)
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-9">
+                                        @Html.DisplayNameFor(model => model.Alchemy)
+                                    </div>
+                                    <div class="col-sm">
+                                        @Html.DisplayFor(model => model.Alchemy)
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-9">
+                                        @Html.DisplayNameFor(model => model.Crafting)
+                                    </div>
+                                    <div class="col-sm">
+                                        @Html.DisplayFor(model => model.Crafting)
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-9">
+                                        @Html.DisplayNameFor(model => model.Medicine)
+                                    </div>
+                                    <div class="col-sm">
+                                        @Html.DisplayFor(model => model.Medicine)
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-9">
+                                        @Html.DisplayNameFor(model => model.Painting)
+                                    </div>
+                                    <div class="col-sm">
+                                        @Html.DisplayFor(model => model.Painting)
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-9">
+                                        @Html.DisplayNameFor(model => model.Music)
+                                    </div>
+                                    <div class="col-sm">
+                                        @Html.DisplayFor(model => model.Music)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm mx-5">
+                                <div class="row justify-content-center">
+                                    <div class="col-9">
+                                        @Html.DisplayNameFor(model => model.Knowledge)
+                                    </div>
+                                    <div class="col-sm">
+                                        @Html.DisplayFor(model => model.Knowledge)
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-9">
+                                        @Html.DisplayNameFor(model => model.Heraldry)
+                                    </div>
+                                    <div class="col-sm">
+                                        @Html.DisplayFor(model => model.Heraldry)
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-9">
+                                        @Html.DisplayNameFor(model => model.Calm)
+                                    </div>
+                                    <div class="col-sm">
+                                        @Html.DisplayFor(model => model.Calm)
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-9">
+                                        @Html.DisplayNameFor(model => model.Empathy)
+                                    </div>
+                                    <div class="col-sm">
+                                        @Html.DisplayFor(model => model.Empathy)
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-9">
+                                        @Html.DisplayNameFor(model => model.Tactics)
+                                    </div>
+                                    <div class="col-sm">
+                                        @Html.DisplayFor(model => model.Tactics)
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-9">
+                                        @Html.DisplayNameFor(model => model.Charisma)
+                                    </div>
+                                    <div class="col-sm">
+                                        @Html.DisplayFor(model => model.Charisma)
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-9">
+                                        @Html.DisplayNameFor(model => model.Intimidate)
+                                    </div>
+                                    <div class="col-sm">
+                                        @Html.DisplayFor(model => model.Intimidate)
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-9">
+                                        @Html.DisplayNameFor(model => model.Persuasion)
+                                    </div>
+                                    <div class="col-sm">
+                                        @Html.DisplayFor(model => model.Persuasion)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

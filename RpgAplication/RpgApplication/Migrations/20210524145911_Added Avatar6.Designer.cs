@@ -10,8 +10,8 @@ using RpgApplication.Areas.Identity.Data;
 namespace RpgApplication.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210524110652_Games3")]
-    partial class Games3
+    [Migration("20210524145911_Added Avatar6")]
+    partial class AddedAvatar6
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -282,9 +282,6 @@ namespace RpgApplication.Migrations
                     b.Property<int>("Crafting")
                         .HasColumnType("int");
 
-                    b.Property<int>("Credibility")
-                        .HasColumnType("int");
-
                     b.Property<int>("Empathy")
                         .HasColumnType("int");
 
@@ -298,9 +295,6 @@ namespace RpgApplication.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Heraldry")
-                        .HasColumnType("int");
-
-                    b.Property<int>("HorseRiding")
                         .HasColumnType("int");
 
                     b.Property<int>("Intellect")
@@ -355,9 +349,6 @@ namespace RpgApplication.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("RangeWeapon")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Sailing")
                         .HasColumnType("int");
 
                     b.Property<int>("Steath")

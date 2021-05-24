@@ -14,5 +14,7 @@ namespace RpgApplication.Models
         public string GameName { get; set; }
         [Display(Name = "Zdjęcie")]
         public string PhotoURL { get; set; }
+        [Display(Name = "Lokacja")]
+        public string GameURL { get; set; }
     }
 }

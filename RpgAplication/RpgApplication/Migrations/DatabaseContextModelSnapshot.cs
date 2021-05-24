@@ -280,9 +280,6 @@ namespace RpgApplication.Migrations
                     b.Property<int>("Crafting")
                         .HasColumnType("int");
 
-                    b.Property<int>("Credibility")
-                        .HasColumnType("int");
-
                     b.Property<int>("Empathy")
                         .HasColumnType("int");
 
@@ -296,9 +293,6 @@ namespace RpgApplication.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Heraldry")
-                        .HasColumnType("int");
-
-                    b.Property<int>("HorseRiding")
                         .HasColumnType("int");
 
                     b.Property<int>("Intellect")
@@ -353,9 +347,6 @@ namespace RpgApplication.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("RangeWeapon")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Sailing")
                         .HasColumnType("int");
 
                     b.Property<int>("Steath")

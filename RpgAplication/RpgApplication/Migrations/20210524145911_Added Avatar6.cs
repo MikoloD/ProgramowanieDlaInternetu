@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RpgApplication.Migrations
 {
-    public partial class CharactersSheet : Migration
+    public partial class AddedAvatar6 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,10 +13,12 @@ namespace RpgApplication.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    GamesId = table.Column<int>(type: "int", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CharacterName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CharacterRole = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Trait = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CharacterAvatarURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Percepcion = table.Column<int>(type: "int", nullable: false),
                     Motorics = table.Column<int>(type: "int", nullable: false),
                     Physique = table.Column<int>(type: "int", nullable: false),
@@ -38,7 +41,6 @@ namespace RpgApplication.Migrations
                     Block = table.Column<int>(type: "int", nullable: false),
                     Condition = table.Column<int>(type: "int", nullable: false),
                     Steath = table.Column<int>(type: "int", nullable: false),
-                    HorseRiding = table.Column<int>(type: "int", nullable: false),
                     Thievery = table.Column<int>(type: "int", nullable: false),
                     Observatione = table.Column<int>(type: "int", nullable: false),
                     Forgery = table.Column<int>(type: "int", nullable: false),
@@ -47,14 +49,12 @@ namespace RpgApplication.Migrations
                     Medicine = table.Column<int>(type: "int", nullable: false),
                     Painting = table.Column<int>(type: "int", nullable: false),
                     Music = table.Column<int>(type: "int", nullable: false),
-                    Sailing = table.Column<int>(type: "int", nullable: false),
                     Knowledge = table.Column<int>(type: "int", nullable: false),
                     Heraldry = table.Column<int>(type: "int", nullable: false),
                     Calm = table.Column<int>(type: "int", nullable: false),
                     Empathy = table.Column<int>(type: "int", nullable: false),
                     Tactics = table.Column<int>(type: "int", nullable: false),
                     Charisma = table.Column<int>(type: "int", nullable: false),
-                    Credibility = table.Column<int>(type: "int", nullable: false),
                     Intimidate = table.Column<int>(type: "int", nullable: false),
                     Persuasion = table.Column<int>(type: "int", nullable: false)
                 },
@@ -62,12 +62,6 @@ namespace RpgApplication.Migrations
                 {
                     table.PrimaryKey("PK_MistbornCharacters", x => x.Id);
                 });
-        }
-
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropTable(
-                name: "MistbornCharacters");
         }
     }
 }

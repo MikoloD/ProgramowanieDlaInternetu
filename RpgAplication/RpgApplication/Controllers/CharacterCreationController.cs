@@ -13,6 +13,7 @@ namespace RpgApplication.Controllers
     {
         private readonly UserManager<UserModel> _userManager;
         private readonly DatabaseContext _context;
+        public int SelectedCharacterId { get; set; }
         public CharacterCreationController(UserManager<UserModel> userManager, DatabaseContext context)
         {
             _userManager = userManager;
@@ -21,13 +22,20 @@ namespace RpgApplication.Controllers
         public IActionResult Index()
         {
             List<MistbornCharacterSheetModel> MyCharacters = _context.MistbornCharacters.Where(x => x.UserName == _userManager.GetUserName(User)).ToList();
-            List<string> characterNames = new List<string>();
-            foreach(var elem in MyCharacters)
-            {
-                characterNames.Add(elem.CharacterName);
-            }
-            ViewBag.MyCharacters = characterNames;
+            ViewBag.MyCharacters = MyCharacters;
             return View();
+        }
+        [HttpPost]
+        public IActionResult Index(int Id)
+        {
+            SelectedCharacterId = Id;
+            return RedirectToAction(nameof(CharacterSheet));
+        }
+        public IActionResult CharacterSheet()
+        {
+            SelectedCharacterId = 1;
+            MistbornCharacterSheetModel model = _context.MistbornCharacters.First(x => x.Id == SelectedCharacterId);
+            return View(model);
         }
         public IActionResult Create()
         {
@@ -37,7 +45,7 @@ namespace RpgApplication.Controllers
         public IActionResult Create(MistbornCharacterSheetModel model)
         {
             model.UserName = _userManager.GetUserName(User);
-            _context.Add(model);
+            _context.MistbornCharacters.Add(model);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
