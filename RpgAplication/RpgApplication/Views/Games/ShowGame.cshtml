@@ -1,0 +1,54 @@
+﻿@model IEnumerable<RpgApplication.Models.GameMessages>
+
+@{
+    ViewData["Title"] = "ShowGame";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>ShowGame</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.Characters.FirstOrDefault().CharacterAvatarURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Message)
+            </th
+            <th>
+                @Html.DisplayNameFor(model => model.MessageDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.UserName)
+            </td>
+            <td>
+                <img src="@Url.Content(item.User.Characters.FirstOrDefault().CharacterAvatarURL)" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Message)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MessageDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RpgApplication.Areas.Identity.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace RpgApplication.Models
         public int Id { get; set; }
         public int GamesId { get; set; }
         // Basic Informations
+        public string UserId { get; set; }
         public string UserName { get; set; }
         [Display(Name = "Imię Postaci")]
         public string CharacterName { get; set; }
@@ -100,5 +102,6 @@ namespace RpgApplication.Models
         public int Intimidate { get; set; } = 0;
         [Display(Name = "Perswazja")]
         public int Persuasion { get; set; } = 0;
+        public virtual UserModel UserModel { get; set; }
     }
 }

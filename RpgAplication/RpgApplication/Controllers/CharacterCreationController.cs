@@ -13,7 +13,6 @@ namespace RpgApplication.Controllers
     {
         private readonly UserManager<UserModel> _userManager;
         private readonly DatabaseContext _context;
-        public int SelectedCharacterId { get; set; }
         public CharacterCreationController(UserManager<UserModel> userManager, DatabaseContext context)
         {
             _userManager = userManager;
@@ -26,15 +25,13 @@ namespace RpgApplication.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Index(int Id)
+        public IActionResult Index(string Id)
         {
-            SelectedCharacterId = Id;
-            return RedirectToAction(nameof(CharacterSheet));
+            return RedirectToAction(nameof(CharacterSheet),new {CharacterId= int.Parse(Id) });
         }
-        public IActionResult CharacterSheet()
+        public IActionResult CharacterSheet(int CharacterId)
         {
-            SelectedCharacterId = 1;
-            MistbornCharacterSheetModel model = _context.MistbornCharacters.First(x => x.Id == SelectedCharacterId);
+            MistbornCharacterSheetModel model = _context.MistbornCharacters.First(x => x.Id == CharacterId);
             return View(model);
         }
         public IActionResult Create()

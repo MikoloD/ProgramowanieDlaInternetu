@@ -14,6 +14,8 @@ namespace RpgApplication.Areas.Identity.Data
     {
         public DbSet<MistbornCharacterSheetModel> MistbornCharacters { get; set; }
         public DbSet<GameModel> Games { get; set; }
+        public DbSet<GameMessages> GameMessages { get; set; }
+        public DbSet<GameUser> GameUsers { get; set; }
         public DatabaseContext(DbContextOptions<DatabaseContext> options)
             : base(options)
         {
@@ -22,9 +24,33 @@ namespace RpgApplication.Areas.Identity.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            // Customize the ASP.NET Identity model and override the defaults if needed.
-            // For example, you can rename the ASP.NET Identity table names and more.
-            // Add your customizations after calling base.OnModelCreating(builder);
+            builder.Entity<GameModel>()
+                .HasMany(x => x.Messages)
+                .WithOne(x => x.Game)
+                .HasForeignKey(x => x.GameId);
+
+            builder.Entity<GameUser>()
+                .HasKey(x => new { x.GameId, x.UserId });
+
+            builder.Entity<GameUser>()
+                .HasOne(x => x.UserModel)
+                .WithMany(x => x.Games)
+                .HasForeignKey(x => x.UserId);
+
+            builder.Entity<GameUser>()
+                  .HasOne(x => x.Game)
+                  .WithMany(x => x.Players)
+                  .HasForeignKey(x => x.GameId);
+
+            builder.Entity<GameMessages>()
+                  .HasOne(x => x.User)
+                  .WithMany(x => x.GameMessages)
+                  .HasForeignKey(x => x.FromUserId);
+
+            builder.Entity<MistbornCharacterSheetModel>()
+                  .HasOne(x => x.UserModel)
+                  .WithMany(x => x.Characters)
+                  .HasForeignKey(x => x.UserId);
         }
     }
 }

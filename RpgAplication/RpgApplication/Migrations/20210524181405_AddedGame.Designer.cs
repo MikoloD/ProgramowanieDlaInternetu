@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RpgApplication.Areas.Identity.Data;
 
 namespace RpgApplication.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210524181405_AddedGame")]
+    partial class AddedGame
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,21 +156,6 @@ namespace RpgApplication.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("RpgApplication.Areas.Identity.Data.GameUser", b =>
-                {
-                    b.Property<string>("GameId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("GameId", "UserId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("GameUsers");
-                });
-
             modelBuilder.Entity("RpgApplication.Areas.Identity.Data.UserModel", b =>
                 {
                     b.Property<string>("Id")
@@ -232,34 +219,6 @@ namespace RpgApplication.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("RpgApplication.Models.GameMessages", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("FromUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("GameId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Message")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("MessageDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FromUserId");
-
-                    b.HasIndex("GameId");
-
-                    b.ToTable("GameMessages");
                 });
 
             modelBuilder.Entity("RpgApplication.Models.GameModel", b =>
@@ -411,9 +370,6 @@ namespace RpgApplication.Migrations
                     b.Property<string>("Trait")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
@@ -421,8 +377,6 @@ namespace RpgApplication.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("MistbornCharacters");
                 });
@@ -476,65 +430,6 @@ namespace RpgApplication.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("RpgApplication.Areas.Identity.Data.GameUser", b =>
-                {
-                    b.HasOne("RpgApplication.Models.GameModel", "Game")
-                        .WithMany("Players")
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RpgApplication.Areas.Identity.Data.UserModel", "UserModel")
-                        .WithMany("Games")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Game");
-
-                    b.Navigation("UserModel");
-                });
-
-            modelBuilder.Entity("RpgApplication.Models.GameMessages", b =>
-                {
-                    b.HasOne("RpgApplication.Areas.Identity.Data.UserModel", "User")
-                        .WithMany("GameMessages")
-                        .HasForeignKey("FromUserId");
-
-                    b.HasOne("RpgApplication.Models.GameModel", "Game")
-                        .WithMany("Messages")
-                        .HasForeignKey("GameId");
-
-                    b.Navigation("Game");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("RpgApplication.Models.MistbornCharacterSheetModel", b =>
-                {
-                    b.HasOne("RpgApplication.Areas.Identity.Data.UserModel", "UserModel")
-                        .WithMany("Characters")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("UserModel");
-                });
-
-            modelBuilder.Entity("RpgApplication.Areas.Identity.Data.UserModel", b =>
-                {
-                    b.Navigation("Characters");
-
-                    b.Navigation("GameMessages");
-
-                    b.Navigation("Games");
-                });
-
-            modelBuilder.Entity("RpgApplication.Models.GameModel", b =>
-                {
-                    b.Navigation("Messages");
-
-                    b.Navigation("Players");
                 });
 #pragma warning restore 612, 618
         }

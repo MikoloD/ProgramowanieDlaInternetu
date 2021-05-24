@@ -10,8 +10,8 @@ using RpgApplication.Areas.Identity.Data;
 namespace RpgApplication.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210524145911_Added Avatar6")]
-    partial class AddedAvatar6
+    [Migration("20210524182903_AddedKeys")]
+    partial class AddedKeys
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -221,12 +221,33 @@ namespace RpgApplication.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("RpgApplication.Models.GameModel", b =>
+            modelBuilder.Entity("RpgApplication.Models.GameMessages", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("GameId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("MessageDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GameId");
+
+                    b.ToTable("GameMessages");
+                });
+
+            modelBuilder.Entity("RpgApplication.Models.GameModel", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("GameName")
                         .HasColumnType("nvarchar(max)");
@@ -432,6 +453,20 @@ namespace RpgApplication.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("RpgApplication.Models.GameMessages", b =>
+                {
+                    b.HasOne("RpgApplication.Models.GameModel", "Game")
+                        .WithMany("Messages")
+                        .HasForeignKey("GameId");
+
+                    b.Navigation("Game");
+                });
+
+            modelBuilder.Entity("RpgApplication.Models.GameModel", b =>
+                {
+                    b.Navigation("Messages");
                 });
 #pragma warning restore 612, 618
         }
