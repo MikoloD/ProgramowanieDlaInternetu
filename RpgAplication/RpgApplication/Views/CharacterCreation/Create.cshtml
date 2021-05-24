@@ -5,17 +5,12 @@
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    //UserName
 
 }
 
-
-<div class="card text-dark text-center mt-5 mx-auto opacity-card">
-    <img class="card-img"
-         src="https://raw.githubusercontent.com/vicberg/Roll20-Warhammer-4e-Character-Sheet/master/background.jpg"
-         alt="Card image">
-    <div class="card-img-overlay">
-        <h2 class="card-title">Karta Postaci</h2>
+<div class="card text-white bg-dark mt-5 mx-auto opacity-card" style="width: 18rem;">
+    <div class="card-body">
+        <h3 class="card-title"> Karta Postaci</h3>
         <form asp-action="Create">
             <div class="row">
                 <div class="col">
@@ -43,292 +38,301 @@
                         </div>
                     </div>
                     <div class="row justify-content-center">
-                        <div class="col-md-auto mx-5">
+                        <div class="col-1 mx-5">
                             <div class="row justify-content-center">
                                 <h4 class="card-title">Atrybuty</h4>
                             </div>
                             <div class="row justify-content-center">
                                 <div class="form-group text-center">
                                     <label asp-for="Percepcion" class="control-label"></label>
-                                    <input asp-for="Percepcion" class="form-control" value="2"/>
+                                    <input asp-for="Percepcion" class="form-control" value="2" />
                                     <span asp-validation-for="Percepcion" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="row justify-content-center">
                                 <div class="form-group">
                                     <label asp-for="Motorics" class="control-label"></label>
-                                    <input asp-for="Motorics" class="form-control" value="2"/>
+                                    <input asp-for="Motorics" class="form-control" value="2" />
                                     <span asp-validation-for="Motorics" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="row justify-content-center">
                                 <div class="form-group">
                                     <label asp-for="Physique" class="control-label"></label>
-                                    <input asp-for="Physique" class="form-control" value="2"/>
+                                    <input asp-for="Physique" class="form-control" value="2" />
                                     <span asp-validation-for="Physique" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="row justify-content-center">
                                 <div class="form-group">
                                     <label asp-for="Psyche" class="control-label"></label>
-                                    <input asp-for="Psyche" class="form-control" value="2"/>
+                                    <input asp-for="Psyche" class="form-control" value="2" />
                                     <span asp-validation-for="Psyche" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="row justify-content-center">
                                 <div class="form-group">
                                     <label asp-for="Intellect" class="control-label"></label>
-                                    <input asp-for="Intellect" class="form-control" value="2"/>
+                                    <input asp-for="Intellect" class="form-control" value="2" />
                                     <span asp-validation-for="Intellect" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="row justify-content-center">
                                 <div class="form-group">
                                     <label asp-for="Presence" class="control-label"></label>
-                                    <input asp-for="Presence" class="form-control" value="2"/>
+                                    <input asp-for="Presence" class="form-control" value="2" />
                                     <span asp-validation-for="Presence" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-auto mx-5">
+                        <div class="col-1 mx-5">
                             <div class="row justify-content-center">
                                 <h4 class="card-title">Allomancja</h4>
                             </div>
                             <div class="row justify-content-center">
                                 <div class="form-group">
                                     <label asp-for="Steel" class="control-label"></label>
-                                    <input asp-for="Steel" class="form-control" value="0"/>
+                                    <input asp-for="Steel" class="form-control" value="0" />
                                     <span asp-validation-for="Steel" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="row justify-content-center">
                                 <div class="form-group">
                                     <label asp-for="Iron" class="control-label"></label>
-                                    <input asp-for="Iron" class="form-control" value="0"/>
+                                    <input asp-for="Iron" class="form-control" value="0" />
                                     <span asp-validation-for="Iron" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="row justify-content-center">
                                 <div class="form-group">
                                     <label asp-for="Lead" class="control-label"></label>
-                                    <input asp-for="Lead" class="form-control" value="0"/>
+                                    <input asp-for="Lead" class="form-control" value="0" />
                                     <span asp-validation-for="Lead" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="row justify-content-center">
                                 <div class="form-group">
                                     <label asp-for="Tin" class="control-label"></label>
-                                    <input asp-for="Tin" class="form-control" value="0"/>
+                                    <input asp-for="Tin" class="form-control" value="0" />
                                     <span asp-validation-for="Tin" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="row justify-content-center">
                                 <div class="form-group">
                                     <label asp-for="Zinc" class="control-label"></label>
-                                    <input asp-for="Zinc" class="form-control" value="0"/>
+                                    <input asp-for="Zinc" class="form-control" value="0" />
                                     <span asp-validation-for="Zinc" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="row justify-content-center">
                                 <div class="form-group">
                                     <label asp-for="Brass" class="control-label"></label>
-                                    <input asp-for="Brass" class="form-control" value="0"/>
+                                    <input asp-for="Brass" class="form-control" value="0" />
                                     <span asp-validation-for="Brass" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="row justify-content-center">
                                 <div class="form-group">
                                     <label asp-for="Copper" class="control-label"></label>
-                                    <input asp-for="Copper" class="form-control" value="0"/>
+                                    <input asp-for="Copper" class="form-control" value="0" />
                                     <span asp-validation-for="Copper" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="row justify-content-center">
                                 <div class="form-group">
                                     <label asp-for="Bronze" class="control-label"></label>
-                                    <input asp-for="Bronze" class="form-control" value="0"/>
+                                    <input asp-for="Bronze" class="form-control" value="0" />
                                     <span asp-validation-for="Bronze" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col">
+                            <div class="col-8">
                                 <h4 class="card-title">Umiejętności</h4>
                                 <div class="row">
-                                    <div class="col-sm mx-2">
+                                    <div class="col-2 mx-5">
                                         <div class="row justify-content-center">
                                             <div class="form-group">
                                                 <label asp-for="MeleWeapon" class="control-label"></label>
-                                                <input asp-for="MeleWeapon" class="form-control" value="0"/>
+                                                <input asp-for="MeleWeapon" class="form-control" value="0" />
                                                 <span asp-validation-for="MeleWeapon" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="form-group">
                                                 <label asp-for="RangeWeapon" class="control-label"></label>
-                                                <input asp-for="RangeWeapon" class="form-control" value="0"/>
+                                                <input asp-for="RangeWeapon" class="form-control" value="0" />
                                                 <span asp-validation-for="RangeWeapon" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="form-group">
                                                 <label asp-for="ThrowingWeapon" class="control-label"></label>
-                                                <input asp-for="ThrowingWeapon" class="form-control" value="0"/>
+                                                <input asp-for="ThrowingWeapon" class="form-control" value="0" />
                                                 <span asp-validation-for="ThrowingWeapon" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="form-group">
                                                 <label asp-for="Evede" class="control-label"></label>
-                                                <input asp-for="Evede" class="form-control" value="0"/>
+                                                <input asp-for="Evede" class="form-control" value="0" />
                                                 <span asp-validation-for="Evede" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="form-group">
                                                 <label asp-for="Parry" class="control-label"></label>
-                                                <input asp-for="Parry" class="form-control" value="0"/>
+                                                <input asp-for="Parry" class="form-control" value="0" />
                                                 <span asp-validation-for="Parry" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="form-group">
                                                 <label asp-for="Block" class="control-label"></label>
-                                                <input asp-for="Block" class="form-control" value="0"/>
+                                                <input asp-for="Block" class="form-control" value="0" />
                                                 <span asp-validation-for="Block" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="form-group">
                                                 <label asp-for="Condition" class="control-label"></label>
-                                                <input asp-for="Condition" class="form-control" value="0"/>
+                                                <input asp-for="Condition" class="form-control" value="0" />
                                                 <span asp-validation-for="Condition" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="form-group">
                                                 <label asp-for="Steath" class="control-label"></label>
-                                                <input asp-for="Steath" class="form-control" value="0"/>
+                                                <input asp-for="Steath" class="form-control" value="0" />
                                                 <span asp-validation-for="Steath" class="text-danger"></span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm mx-2">
+                                    <div class="col-2 mx-5">
                                         <div class="row justify-content-center">
                                             <div class="form-group">
                                                 <label asp-for="Thievery" class="control-label"></label>
-                                                <input asp-for="Thievery" class="form-control" value="0"/>
+                                                <input asp-for="Thievery" class="form-control" value="0" />
                                                 <span asp-validation-for="Thievery" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="form-group">
                                                 <label asp-for="Observatione" class="control-label"></label>
-                                                <input asp-for="Observatione" class="form-control" value="0"/>
+                                                <input asp-for="Observatione" class="form-control" value="0" />
                                                 <span asp-validation-for="Observatione" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="form-group">
                                                 <label asp-for="Forgery" class="control-label"></label>
-                                                <input asp-for="Forgery" class="form-control" value="0"/>
+                                                <input asp-for="Forgery" class="form-control" value="0" />
                                                 <span asp-validation-for="Forgery" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="form-group">
                                                 <label asp-for="Alchemy" class="control-label"></label>
-                                                <input asp-for="Alchemy" class="form-control" value="0"/>
+                                                <input asp-for="Alchemy" class="form-control" value="0" />
                                                 <span asp-validation-for="Alchemy" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="form-group">
                                                 <label asp-for="Crafting" class="control-label"></label>
-                                                <input asp-for="Crafting" class="form-control" value="0"/>
+                                                <input asp-for="Crafting" class="form-control" value="0" />
                                                 <span asp-validation-for="Crafting" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="form-group">
                                                 <label asp-for="Medicine" class="control-label"></label>
-                                                <input asp-for="Medicine" class="form-control" value="0"/>
+                                                <input asp-for="Medicine" class="form-control" value="0" />
                                                 <span asp-validation-for="Medicine" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="form-group">
                                                 <label asp-for="Painting" class="control-label"></label>
-                                                <input asp-for="Painting" class="form-control" value="0"/>
+                                                <input asp-for="Painting" class="form-control" value="0" />
                                                 <span asp-validation-for="Painting" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="form-group">
                                                 <label asp-for="Music" class="control-label"></label>
-                                                <input asp-for="Music" class="form-control" value="0"/>
+                                                <input asp-for="Music" class="form-control" value="0" />
                                                 <span asp-validation-for="Music" class="text-danger"></span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm mx-2">
+                                    <div class="col-2 mx-5">
                                         <div class="row justify-content-center">
                                             <div class="form-group">
                                                 <label asp-for="Knowledge" class="control-label"></label>
-                                                <input asp-for="Knowledge" class="form-control" value="0"/>
+                                                <input asp-for="Knowledge" class="form-control" value="0" />
                                                 <span asp-validation-for="Knowledge" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="form-group">
                                                 <label asp-for="Heraldry" class="control-label"></label>
-                                                <input asp-for="Heraldry" class="form-control" value="0"/>
+                                                <input asp-for="Heraldry" class="form-control" value="0" />
                                                 <span asp-validation-for="Heraldry" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="form-group">
                                                 <label asp-for="Calm" class="control-label"></label>
-                                                <input asp-for="Calm" class="form-control" value="0"/>
+                                                <input asp-for="Calm" class="form-control" value="0" />
                                                 <span asp-validation-for="Calm" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="form-group">
                                                 <label asp-for="Empathy" class="control-label"></label>
-                                                <input asp-for="Empathy" class="form-control" value="0"/>
+                                                <input asp-for="Empathy" class="form-control" value="0" />
                                                 <span asp-validation-for="Empathy" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="form-group">
                                                 <label asp-for="Tactics" class="control-label"></label>
-                                                <input asp-for="Tactics" class="form-control" value="0"/>
+                                                <input asp-for="Tactics" class="form-control" value="0" />
                                                 <span asp-validation-for="Tactics" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="form-group">
                                                 <label asp-for="Charisma" class="control-label"></label>
-                                                <input asp-for="Charisma" class="form-control" value="0"/>
+                                                <input asp-for="Charisma" class="form-control" value="0" />
                                                 <span asp-validation-for="Charisma" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="form-group">
                                                 <label asp-for="Intimidate" class="control-label"></label>
-                                                <input asp-for="Intimidate" class="form-control" value="0"/>
+                                                <input asp-for="Intimidate" class="form-control" value="0" />
                                                 <span asp-validation-for="Intimidate" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="form-group">
                                                 <label asp-for="Persuasion" class="control-label"></label>
-                                                <input asp-for="Persuasion" class="form-control" value="0"/>
+                                                <input asp-for="Persuasion" class="form-control" value="0" />
                                                 <span asp-validation-for="Persuasion" class="text-danger"></span>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="row justify-content-center">
+                                <div class="form-group">
+                                    <label asp-for="CharacterAvatarURL" class="control-label"></label>
+                                    <input asp-for="CharacterAvatarURL" class="form-control" />
+                                    <span asp-validation-for="CharacterAvatarURL" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RpgApplication.Areas.Identity.Data;
 
 namespace RpgApplication.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210524091834_Games")]
+    partial class Games
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -219,24 +221,6 @@ namespace RpgApplication.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("RpgApplication.Models.GameModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("GameName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhotoURL")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Games");
-                });
-
             modelBuilder.Entity("RpgApplication.Models.MistbornCharacterSheetModel", b =>
                 {
                     b.Property<int>("Id")
@@ -258,9 +242,6 @@ namespace RpgApplication.Migrations
 
                     b.Property<int>("Calm")
                         .HasColumnType("int");
-
-                    b.Property<string>("CharacterAvatarURL")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CharacterName")
                         .HasColumnType("nvarchar(max)");

@@ -9,35 +9,30 @@ using System.Threading.Tasks;
 
 namespace RpgApplication.Controllers
 {
-    public class CharacterCreationController : Controller
+    public class GamesController : Controller
     {
         private readonly UserManager<UserModel> _userManager;
+        private readonly UserManager<UserModel> _signInManager;
         private readonly DatabaseContext _context;
-        public CharacterCreationController(UserManager<UserModel> userManager, DatabaseContext context)
+
+        public GamesController(UserManager<UserModel> userManager, UserManager<UserModel> signInManager, DatabaseContext context)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
             _context = context;
         }
         public IActionResult Index()
         {
-            List<MistbornCharacterSheetModel> MyCharacters = _context.MistbornCharacters.Where(x => x.UserName == _userManager.GetUserName(User)).ToList();
-            List<string> characterNames = new List<string>();
-            foreach(var elem in MyCharacters)
-            {
-                characterNames.Add(elem.CharacterName);
-            }
-            ViewBag.MyCharacters = characterNames;
-            return View();
+            return View(_context.Games);
         }
         public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult Create(MistbornCharacterSheetModel model)
+        public IActionResult Create(GameModel model)
         {
-            model.UserName = _userManager.GetUserName(User);
-            _context.Add(model);
+            _context.Games.Add(model);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<RpgApplication.Models.GameModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card text-dark text-center mt-5 mx-auto opacity-card">
+    <img class="card-img"
+         src="https://raw.githubusercontent.com/vicberg/Roll20-Warhammer-4e-Character-Sheet/master/background.jpg"
+         alt="Card image">
+    <div class="card-img-overlay">
+        <h2 class="card-title">Gry</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.GameName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PhotoURL)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GameName)
+                        </td>
+                        <td>
+                            <img src="@Url.Content(item.PhotoURL)" />
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a asp-action="Create">Create New</a>
+    </div>
+</div>

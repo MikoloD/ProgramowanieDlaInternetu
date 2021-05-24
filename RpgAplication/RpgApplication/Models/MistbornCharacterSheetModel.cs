@@ -10,6 +10,7 @@ namespace RpgApplication.Models
     {
         [Key]
         public int Id { get; set; }
+        public int GamesId { get; set; }
         // Basic Informations
         public string UserName { get; set; }
         [Display(Name = "Imię Postaci")]
@@ -18,6 +19,8 @@ namespace RpgApplication.Models
         public string CharacterRole { get; set; }
         [Display(Name = "Cecha")]
         public string Trait { get; set; }
+        [Display(Name = "Awatar")]
+        public string CharacterAvatarURL { get; set; }
         // Skills
         public int Percepcion { get; set; } = 2;
         public int Motorics { get; set; } = 2;

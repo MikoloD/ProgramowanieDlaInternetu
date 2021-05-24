@@ -13,6 +13,7 @@ namespace RpgApplication.Areas.Identity.Data
     public class DatabaseContext : IdentityDbContext<UserModel>
     {
         public DbSet<MistbornCharacterSheetModel> MistbornCharacters { get; set; }
+        public DbSet<GameModel> Games { get; set; }
         public DatabaseContext(DbContextOptions<DatabaseContext> options)
             : base(options)
         {

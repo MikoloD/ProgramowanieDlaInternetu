@@ -7,9 +7,14 @@
 <ul class="navbar-nav text-white">
     @if (SignInManager.IsSignedIn(User))
     {
-
         <li class="nav-item">
-            <a id="create" class="nav-link" asp-area="CharacterCreation" asp-page="/Create" title="Create">Stwórz Kartę postaci!</a>
+            <a id="create" class="nav-link" href="/CharacterCreation/Create">Stwórz Kartę postaci!</a>
+        </li>
+        <li class="nav-item">
+            <a id="create" class="nav-link" href="/Games/Index">Rozpocznij grę!</a>
+        </li>
+        <li class="nav-item">
+            <a id="create" class="nav-link" href="/CharacterCreation/Index">Twoje Postacie</a>
         </li>
         <li class="nav-item">
             <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Jesteś zalogowany jako @UserManager.GetUserName(User)!</a>
