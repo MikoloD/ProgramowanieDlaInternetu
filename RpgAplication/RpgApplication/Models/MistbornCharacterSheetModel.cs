@@ -11,7 +11,7 @@ namespace RpgApplication.Models
     {
         [Key]
         public int Id { get; set; }
-        public int GamesId { get; set; }
+        public string GamesId { get; set; }
         // Basic Informations
         public string UserId { get; set; }
         public string UserName { get; set; }

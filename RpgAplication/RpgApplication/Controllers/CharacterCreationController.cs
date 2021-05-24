@@ -31,6 +31,7 @@ namespace RpgApplication.Controllers
         }
         public IActionResult CharacterSheet(int CharacterId)
         {
+            CharacterId = 1;
             MistbornCharacterSheetModel model = _context.MistbornCharacters.First(x => x.Id == CharacterId);
             return View(model);
         }

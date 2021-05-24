@@ -4,51 +4,34 @@
     ViewData["Title"] = "ShowGame";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="card text-dark text-center mt-5 mx-auto opacity-card">
+    <img class="card-img"
+         src="https://raw.githubusercontent.com/vicberg/Roll20-Warhammer-4e-Character-Sheet/master/background.jpg"
+         alt="Card image">
+    <div class="card-img-overlay">
+        <h2 class="card-title">Trwająca sejsa</h2>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-sm">
+                        @Html.DisplayFor(modelItem => item.Message)
+                </div>
+                <div class="col">
+                    <div class="row">
+                        @Html.DisplayFor(modelItem => item.User.UserName)
+                        @Html.DisplayFor(modelItem => item.MessageDate)
+                    </div>
+                    <div class="row">
+                        <a href="/ShowGame/@item.Id">
+                            <img src="@Url.Content(item.User.Characters.FirstOrDefault().CharacterAvatarURL)" />
+                        </a>
+                    </div>
+                    <div class="row align-items-center">
+                        @Html.DisplayFor(modelItem => item.User.Characters.FirstOrDefault().CharacterName)
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 
-<h1>ShowGame</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.User.UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User.Characters.FirstOrDefault().CharacterAvatarURL)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Message)
-            </th
-            <th>
-                @Html.DisplayNameFor(model => model.MessageDate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.UserName)
-            </td>
-            <td>
-                <img src="@Url.Content(item.User.Characters.FirstOrDefault().CharacterAvatarURL)" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Message)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MessageDate)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+</div>
