@@ -3,9 +3,8 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    List<MistbornCharacterSheetModel> MyCharacters = ViewBag.MyCharacters;
     int selectedValue = 0;
-    SelectList List = new SelectList(MyCharacters, "Id", "CharacterName",selectedValue);
+    SelectList List = new SelectList(ViewBag.MyCharacters, "Id", "CharacterName",selectedValue);
 }
 
 <div class="card text-white bg-dark mt-5 my-5 mx-auto opacity-card" style="width: 25rem;">
@@ -17,7 +16,7 @@
                     <div class="form-inline my-3">
                         <label asp-for="CharacterName" class="control-label mr-5 ml-2 my-3"></label>
                         <select asp-items="@(List)"
-                                class="form-control" asp-for="CharacterName" onchange="update(this.val)">
+                                class="form-control" asp-for="CharacterName" onsubmit="update(this.val)">
                             <option value="wybierz">---Wybierz---</option>
                         </select>
                     </div>

@@ -3,35 +3,64 @@
 @{
     ViewData["Title"] = "ShowGame";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    GameMessages message = new GameMessages();
 }
-<div class="card text-dark text-center mt-5 mx-auto opacity-card">
-    <img class="card-img"
-         src="https://raw.githubusercontent.com/vicberg/Roll20-Warhammer-4e-Character-Sheet/master/background.jpg"
-         alt="Card image">
-    <div class="card-img-overlay">
-        <h2 class="card-title">Trwająca sejsa</h2>
-        <div class="row">
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/wmd.css" />
+    <script type="text/javascript" src="~/js/wmd.js"></script>
+    <script type="text/javascript" src="~/js/showdown.js"></script>
+</head>
+<body>
+    <div class="card text-dark text-center mt-5 mx-auto opacity-card">
+        <img class="card-img"
+             src="https://raw.githubusercontent.com/vicberg/Roll20-Warhammer-4e-Character-Sheet/master/background.jpg"
+             alt="Card image">
+        <div class="card-img-overlay">
+            <h2 class="card-title">Trwająca sejsa</h2>
             @foreach (var item in Model)
             {
-                <div class="col-sm">
+                <div class="row">
+                    <div class="col-sm">
                         @Html.DisplayFor(modelItem => item.Message)
-                </div>
-                <div class="col">
-                    <div class="row">
-                        @Html.DisplayFor(modelItem => item.User.UserName)
-                        @Html.DisplayFor(modelItem => item.MessageDate)
                     </div>
-                    <div class="row">
-                        <a href="/ShowGame/@item.Id">
-                            <img src="@Url.Content(item.User.Characters.FirstOrDefault().CharacterAvatarURL)" />
-                        </a>
-                    </div>
-                    <div class="row align-items-center">
-                        @Html.DisplayFor(modelItem => item.User.Characters.FirstOrDefault().CharacterName)
+                    <div class="col-2">
+                        <div class="row">
+                            @Html.DisplayFor(modelItem => item.User.UserName)
+                            @Html.DisplayFor(modelItem => item.MessageDate)
+                        </div>
+                        <div class="row">
+                            @{ 
+                                var PostingUser = item.User.Characters.FirstOrDefault();
+                                message.GameId = PostingUser.GamesId;
+                            }
+                            <a asp-controller="CharacterCreation" asp-action="CharacterSheet" asp-route-CharacterId="@PostingUser.Id">
+                                <img src="@Url.Content(PostingUser.CharacterAvatarURL)" />
+                            </a>
+                        </div>
+                        <div class="row align-items-center">
+                            @Html.DisplayFor(modelItem => PostingUser.CharacterName)
+                        </div>
                     </div>
                 </div>
             }
+            <form asp-action="ShowGame" asp-route-model="@message">
+                <div>
+                    <div id="notes-button-bar"></div>
+                    <textarea id="notes" name="copy" asp-for="@message.Message"></textarea>
+                </div>
+                <div>
+                    <input type="submit" value="Napisz" class="btn btn-secondary" />
+                </div>
+            </form>
+            <script type="text/javascript">
+                setup_wmd({
+                    input: "notes",
+                    button_bar: "notes-button-bar",
+                    preview: "notes-preview",
+                    output: "copy_html"
+                });
+            </script>
         </div>
     </div>
+</body>
 
-</div>

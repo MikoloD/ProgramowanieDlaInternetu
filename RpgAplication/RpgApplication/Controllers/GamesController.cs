@@ -39,6 +39,14 @@ namespace RpgApplication.Controllers
                 .Where(x => x.GameId == Id).ToList();
             return View(CurrentGame);
         }
+        [HttpPost("ShowGame/{Id}")]
+        public IActionResult ShowGame(GameMessages model)
+        {
+            model.FromUserId = _signInManager.GetUserId(User);
+            model.MessageDate = DateTime.Now;
+            _context.GameMessages.Add(model);
+            return RedirectToAction(nameof(ShowGame),new { Id=model.GameId });
+        }
         [HttpPost]
         public IActionResult Create(GameModel model)
         {
