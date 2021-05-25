@@ -5,37 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Views\Games\css\wmd.css" />
-    <None Remove="Views\Games\js\showdown.js" />
-    <None Remove="Views\Games\js\wmd.combined.js" />
-    <None Remove="Views\Games\js\wmd.combined.min.js" />
-    <None Remove="Views\Games\js\wmd.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Views\Games\css\wmd.css">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Views\Games\js\showdown.js">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Views\Games\js\wmd.combined.js">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Views\Games\js\wmd.combined.min.js">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Views\Games\js\wmd.js">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.6" />
@@ -47,10 +16,6 @@
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="5.0.6" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Core" Version="5.0.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="SignalR\" />
   </ItemGroup>
 
 </Project>

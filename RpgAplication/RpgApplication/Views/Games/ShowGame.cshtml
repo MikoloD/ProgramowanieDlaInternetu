@@ -3,12 +3,11 @@
 @{
     ViewData["Title"] = "ShowGame";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    GameMessages message = new GameMessages();
+    GameMessages message = ViewBag.MyMessage;
 }
 <head>
-    <link rel="stylesheet" type="text/css" href="~/css/wmd.css" />
-    <script type="text/javascript" src="~/js/wmd.js"></script>
-    <script type="text/javascript" src="~/js/showdown.js"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="richtext.min.css">
 </head>
 <body>
     <div class="card text-dark text-center mt-5 mx-auto opacity-card">
@@ -29,9 +28,8 @@
                             @Html.DisplayFor(modelItem => item.MessageDate)
                         </div>
                         <div class="row">
-                            @{ 
+                            @{
                                 var PostingUser = item.User.Characters.FirstOrDefault();
-                                message.GameId = PostingUser.GamesId;
                             }
                             <a asp-controller="CharacterCreation" asp-action="CharacterSheet" asp-route-CharacterId="@PostingUser.Id">
                                 <img src="@Url.Content(PostingUser.CharacterAvatarURL)" />
@@ -43,24 +41,21 @@
                     </div>
                 </div>
             }
-            <form asp-action="ShowGame" asp-route-model="@message">
-                <div>
-                    <div id="notes-button-bar"></div>
-                    <textarea id="notes" name="copy" asp-for="@message.Message"></textarea>
+            <form asp-controller="Games" asp-action="AddMessage" asp-route-model="@message">
+                <div class="row-sm">
+                    <div class="col-sm">
+                    <input class="" type="text" id="messageInput" asp-for="@message.Message"/></div>
                 </div>
-                <div>
-                    <input type="submit" value="Napisz" class="btn btn-secondary" />
+                <div class="row">&nbsp;</div>
+                <div class="row">
+                    <div class="col-sm">
+                        <input type="button" id="sendButton" value="Napisz" />
+                    </div>
                 </div>
             </form>
-            <script type="text/javascript">
-                setup_wmd({
-                    input: "notes",
-                    button_bar: "notes-button-bar",
-                    preview: "notes-preview",
-                    output: "copy_html"
-                });
-            </script>
         </div>
     </div>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
 </body>
 
