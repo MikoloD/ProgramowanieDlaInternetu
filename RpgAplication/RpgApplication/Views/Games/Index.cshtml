@@ -24,19 +24,22 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.GameName)
-                        </td>
-                        <td>
-                            <a href="/ShowGame/@item.Id">
-                                <img src="@Url.Content(item.PhotoURL)" />
-                                </a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GameName)
+                    </td>
+                    <td>
+                        <a href="/ShowGame/@item.Id">
+                            <img src="@Url.Content(item.PhotoURL)" />
+                        </a>
+                    </td>
+                    <td class="col-1">
+                        <a asp-action="AddUserToGame" asp-route-Id="@item.Id">Dodaj Użytkownika</a>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>
-        <a asp-action="Create">Create New</a>
+        <a asp-action="Create">Dodaj nową grę</a>
     </div>
 </div>
