@@ -32,12 +32,13 @@ namespace RpgApplication.Controllers
         [HttpGet("ShowGame/{Id}")]
         public IActionResult ShowGame(string Id)
         {
-            ViewBag.MyMessage = new GameMessages() { GameId = Id };
+            GameMessages myMessge = new GameMessages() { GameId = Id };
             var CurrentGame = _context.GameMessages
                 .Include(x => x.User)
                 .ThenInclude(x => x.Characters)
                 .Where(x => x.GameId == Id).ToList();
-            return View(CurrentGame);
+            ViewBag.Messages = CurrentGame;
+            return View(myMessge);
         }
         [HttpPost]
         public IActionResult AddMessage(string GameId, string message)

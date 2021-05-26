@@ -1,57 +1,51 @@
-﻿@model IEnumerable<RpgApplication.Models.GameMessages>
+﻿@model RpgApplication.Models.GameMessages
 
 @{
     ViewData["Title"] = "ShowGame";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    GameMessages myMessage = ViewBag.MyMessage;
-    int a=0;
+    Layout = "~/Views/Shared/_LayoutNoOverFlow.cshtml";
+    IEnumerable<RpgApplication.Models.GameMessages> ListofMessages = ViewBag.Messages;
+    int a = 0;
 }
 <head>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="richtext.min.css">
 </head>
 <body>
-    <div class="card text-dark text-center mt-5 mx-auto opacity-card">
-        <img class="card-img"
-             src="https://raw.githubusercontent.com/vicberg/Roll20-Warhammer-4e-Character-Sheet/master/background.jpg"
-             alt="Card image">
-        <div class="card-img-overlay" style="overflow:auto;">
-            <h2 class="card-title">Trwająca sejsa</h2>
-            @foreach (var item in Model)
-            {
-                <div class="row">
-                    <div class="col-sm">
-                        @Html.DisplayFor(modelItem => item.Message)
-                    </div>
-                    <div class="col-2">
-                        <div class="row">
-                            @Html.DisplayFor(modelItem => item.User.UserName)
-                            @Html.DisplayFor(modelItem => item.MessageDate)
-                        </div>
-                        <div class="row">
-                            @{
-                                var PostingUser = item.User.Characters.FirstOrDefault();
-                            }
-                            <a asp-controller="CharacterCreation" asp-action="CharacterSheet" asp-route-CharacterId="@PostingUser.Id">
-                                <img width="100" height="100" src="@Url.Content(PostingUser.CharacterAvatarURL)" />
-                            </a>
-                        </div>
-                        <div class="row align-items-center">
-                            @Html.DisplayFor(modelItem => PostingUser.CharacterName)
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
-    <form asp-controller="Games" asp-action="AddMessage" method="post"
-          asp-route-GameId="@myMessage.GameId">
-        <div class="row-sm">
+
+    <h2 class="card-title">Trwająca sejsa</h2>
+    @foreach (var item in ListofMessages)
+    {
+        <div class="row">
             <div class="col-sm">
-                <input class="form-group" asp-for="@myMessage.Message" />
+                @Html.DisplayFor(modelItem => item.Message)
+            </div>
+            <div class="col-2">
+                <div class="row">
+                    @Html.DisplayFor(modelItem => item.User.UserName)
+                    @Html.DisplayFor(modelItem => item.MessageDate)
+                </div>
+                <div class="row">
+                    @{
+                        var PostingUser = item.User.Characters.FirstOrDefault();
+                    }
+                    <a asp-controller="CharacterCreation" asp-action="CharacterSheet" asp-route-CharacterId="@PostingUser.Id">
+                        <img width="100" height="100" src="@Url.Content(PostingUser.CharacterAvatarURL)" />
+                    </a>
+                </div>
+                <div class="row align-items-center">
+                    @Html.DisplayFor(modelItem => PostingUser.CharacterName)
+                </div>
             </div>
         </div>
-        <div class="row">&nbsp;</div>
+    }
+    <form asp-controller="Games" asp-action="AddMessage" method="post"
+          asp-route-GameId="@Model.GameId" asp-route-message="@Model.Message">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row-sm">
+            <div class="col-sm">
+                <input class="form-group" asp-for="Message" />
+            </div>
+        </div>
         <div class="row">
             <div class="col-sm">
                 <input type="submit" id="sendButton" value="Napisz" />
