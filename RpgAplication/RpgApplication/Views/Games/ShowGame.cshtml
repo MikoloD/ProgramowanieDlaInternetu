@@ -4,7 +4,8 @@
     ViewData["Title"] = "ShowGame";
     Layout = "~/Views/Shared/_LayoutNoOverFlow.cshtml";
     IEnumerable<RpgApplication.Models.GameMessages> ListofMessages = ViewBag.Messages;
-    int a = 0;
+
+
 }
 <head>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -39,11 +40,17 @@
         </div>
     }
     <form asp-controller="Games" asp-action="AddMessage" method="post"
-          asp-route-GameId="@Model.GameId" asp-route-message="@Model.Message">
+          asp-route-GameId="@Model.GameId" asp-route-message="@Model.Message" asp-route-Dices="@Model.Dices" asp-route-Roll="@Model.Roll" class="mx-5">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="row-sm">
+        <div class="row">
             <div class="col-sm">
-                <input class="form-group" asp-for="Message" />
+                <textarea class="form-control" asp-for="Message" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+                    <label asp-for="Dices" class="control-label"></label>
+                    <input asp-for="Dices" class="form-control" />
+                    <label asp-for="Roll" class="control-label"></label>
+                    <input asp-for="Roll" class="form-control" />
             </div>
         </div>
         <div class="row">

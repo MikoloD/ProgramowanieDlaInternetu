@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RpgApplication.Areas.Identity.Data;
 using RpgApplication.Models;
@@ -41,10 +42,24 @@ namespace RpgApplication.Controllers
             return View(myMessge);
         }
         [HttpPost]
-        public IActionResult AddMessage(string GameId, string message)
+        public IActionResult AddMessage(string GameId, string message, int Roll, int Dices)
         {
-            GameMessages model = new GameMessages();
-            model.GameId = GameId;
+            Random rnd = new Random();
+            int succeses = 0;
+            GameMessages model = new GameMessages()
+            {
+                GameId = GameId,
+                Roll = Roll,
+                Dices = Dices
+            };
+            for(int i=0;i<Dices;i++)
+            {
+                var result = rnd.Next(1, 11);
+                if (result == 10) succeses += 2;
+                else if (result + Roll > 9) succeses += 1;
+                else if (result==1) succeses -= 1;
+            }
+            message = message + " [Wynik rzutu: " + succeses.ToString() + " ]";
             model.Message = message;
             model.FromUserId = _signInManager.GetUserId(User);
             model.MessageDate = DateTime.Now;
@@ -61,7 +76,7 @@ namespace RpgApplication.Controllers
             return RedirectToAction(nameof(Index));
         }
         [HttpGet]
-        public IActionResult AddUserToGame(string Id,string warning="")
+        public IActionResult AddUserToGame(string Id, string warning = "")
         {
             List<MistbornCharacterSheetModel> PlayersThatCanBeAdded = _context.MistbornCharacters.Where(x => x.GamesId != Id).ToList();
             ViewBag.Players = PlayersThatCanBeAdded;
@@ -80,7 +95,7 @@ namespace RpgApplication.Controllers
             {
                 if (item.GameId == GameId && item.UserId == selectedUserId)
                     return RedirectToAction(nameof(AddUserToGame),
-                        new { Id = GameId,warning="Ten użytkownik uczestniczy już w tej grze" });
+                        new { Id = GameId, warning = "Ten użytkownik uczestniczy już w tej grze" });
             }
             if (flag == true)
             {
