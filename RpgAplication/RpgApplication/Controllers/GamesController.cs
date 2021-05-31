@@ -24,6 +24,7 @@ namespace RpgApplication.Controllers
         }
         public IActionResult Index()
         {
+            ViewBag.IsAdmin = User.IsInRole("Administrator");
             return View(_context.Games);
         }
         public IActionResult Create()
