@@ -17,14 +17,12 @@ namespace RpgApplication.Controllers
     public class GamesController : Controller
     {
         private readonly UserManager<UserModel> _userManager;
-        private readonly UserManager<UserModel> _signInManager;
         private readonly DatabaseContext _context;
         private readonly IJSRuntime _jSRuntime;
         public static HubConnection HubClient { get; set; }
-        public GamesController(UserManager<UserModel> userManager, UserManager<UserModel> signInManager, DatabaseContext context, IJSRuntime jSRuntime)
+        public GamesController(UserManager<UserModel> userManager, DatabaseContext context, IJSRuntime jSRuntime)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
             _context = context;
             _jSRuntime = jSRuntime;
         }
@@ -59,8 +57,8 @@ namespace RpgApplication.Controllers
 
             GameMessages myMessge = new GameMessages() { GameId = Id };
             ViewBag.Messages = CurrentGame;
-            ViewBag.UserName = _signInManager.GetUserName(User);
-            string userId = _signInManager.GetUserId(User);
+            ViewBag.UserName = _userManager.GetUserName(User);
+            string userId = _userManager.GetUserId(User);
             bool allowedUser = _context.GameUsers.Any(
                 x => x.GameId==Id && x.UserId == userId);
             ViewBag.Allowed = allowedUser;
@@ -87,7 +85,7 @@ namespace RpgApplication.Controllers
             if (Dices != 0 || Roll != 0)
                 message = message + " [Wynik rzutu: " + succeses.ToString() + "]";
             model.Message = message;
-            model.FromUserId = _signInManager.GetUserId(User);
+            model.FromUserId = _userManager.GetUserId(User);
             model.MessageDate = DateTime.Now;
             _context.GameMessages.Add(model);
             _context.SaveChanges();
