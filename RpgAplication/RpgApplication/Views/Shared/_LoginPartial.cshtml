@@ -5,13 +5,13 @@
 @inject UserManager<UserModel> UserManager
 
 <ul class="navbar-nav text-white">
+    <li class="nav-item">
+        <a id="create" class="nav-link" href="/Games/Index">Rozpocznij grę!</a>
+    </li>
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="nav-item">
             <a id="create" class="nav-link" href="/CharacterCreation/Create">Stwórz Kartę postaci!</a>
-        </li>
-        <li class="nav-item">
-            <a id="create" class="nav-link" href="/Games/Index">Rozpocznij grę!</a>
         </li>
         <li class="nav-item">
             <a id="create" class="nav-link" href="/CharacterCreation/Index">Twoje Postacie</a>

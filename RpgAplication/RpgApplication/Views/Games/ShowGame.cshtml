@@ -1,65 +1,76 @@
 ﻿@model RpgApplication.Models.GameMessages
-
 @{
     ViewData["Title"] = "ShowGame";
     Layout = "~/Views/Shared/_LayoutNoOverFlow.cshtml";
-    IEnumerable<RpgApplication.Models.GameMessages> ListofMessages = ViewBag.Messages;
-
-
+    List<RpgApplication.Models.GameMessages> ListofMessages = ViewBag.Messages;
 }
 <head>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="richtext.min.css">
+    <link rel="stylesheet" href="~/css/game.css">
 </head>
 <body>
-
-    <h2 class="card-title">Trwająca sejsa</h2>
-    @foreach (var item in ListofMessages)
+    <a class="card-title text-white" href="#pageDown" style="font-size: 1.5em">Trwająca sejsa</a>
+    <div id="AllMessages">
+        @for (int i = 0; i < ListofMessages.Count; i++)
+        {
+            <div class="row mx-5">
+                @{
+                    var PostingUser = ListofMessages[i].User.Characters.FirstOrDefault();
+                }
+                <div class="col-sm my-4 mx-5">
+                    <div class="card text-white text-left" style="min-height: 18rem;">
+                        <div class="card-header" style="background-color:#b2bec3">@ListofMessages[i].MessageDate</div>
+                        <div class="card-body" style="background-color: #636e72">
+                            <h5 class="card-title">@PostingUser.CharacterName</h5>
+                            <p class="card-text">@ListofMessages[i].Message</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="my-4 mx-5">
+                    <div class="card text-white text-center" style="min-height: 10rem;min-width: 10rem">
+                        <div class="card-body" style="background-color: #636e72;">
+                            <div class="row justify-content-center">
+                                <a asp-controller="CharacterCreation" asp-action="CharacterSheet" asp-route-CharacterId="@PostingUser.Id">
+                                    <img class="rounded mx-auto d-block center "
+                                         width="100" height="100"
+                                         src="@Url.Content(PostingUser.CharacterAvatarURL)"/>
+                                </a>
+                            </div>
+                            <div class="row justify-content-center text-white">
+                                @ListofMessages[i].User.UserName
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    @if (@ViewBag.Allowed)
     {
-        <div class="row">
-            <div class="col-sm">
-                @Html.DisplayFor(modelItem => item.Message)
-            </div>
-            <div class="col-2">
-                <div class="row">
-                    @Html.DisplayFor(modelItem => item.User.UserName)
-                    @Html.DisplayFor(modelItem => item.MessageDate)
-                </div>
-                <div class="row">
-                    @{
-                        var PostingUser = item.User.Characters.FirstOrDefault();
-                    }
-                    <a asp-controller="CharacterCreation" asp-action="CharacterSheet" asp-route-CharacterId="@PostingUser.Id">
-                        <img width="100" height="100" src="@Url.Content(PostingUser.CharacterAvatarURL)" />
-                    </a>
-                </div>
-                <div class="row align-items-center">
-                    @Html.DisplayFor(modelItem => PostingUser.CharacterName)
-                </div>
-            </div>
-        </div>
-    }
     <form asp-controller="Games" asp-action="AddMessage" method="post"
           asp-route-GameId="@Model.GameId" asp-route-message="@Model.Message" asp-route-Dices="@Model.Dices" asp-route-Roll="@Model.Roll" class="mx-5">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="row">
+        <div id="pageDown" class="row my-5 mx-5">
             <div class="col-sm">
-                <textarea class="form-control" asp-for="Message" rows="5"></textarea>
+                <textarea class="form-control text-white" style="background-color: #636e72;" placeholder="Tu możesz pisać..." asp-for="Message" rows="8"></textarea>
             </div>
-            <div class="form-group">
-                    <label asp-for="Dices" class="control-label"></label>
+            <div class="card ml-4" style="min-height: 10rem;min-width: 10rem; background-color: #636e72">
+                <div class="card-body" >
+                    <label asp-for="Dices" class="control-label text-white"></label>
                     <input asp-for="Dices" class="form-control" />
-                    <label asp-for="Roll" class="control-label"></label>
+                    <label asp-for="Roll" class="control-label text-white "></label>
                     <input asp-for="Roll" class="form-control" />
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm">
-                <input type="submit" id="sendButton" value="Napisz" />
+                <input class="btn btn-light text-white" style="background-color: #636e72" type="submit" id="sendButton" value="Napisz" />
             </div>
         </div>
     </form>
-    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    }
     <script src="~/js/chat.js"></script>
 </body>
 

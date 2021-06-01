@@ -8,6 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.JSInterop;
+using Microsoft.AspNetCore.SignalR.Client;
 
 namespace RpgApplication.Controllers
 {
@@ -16,11 +19,14 @@ namespace RpgApplication.Controllers
         private readonly UserManager<UserModel> _userManager;
         private readonly UserManager<UserModel> _signInManager;
         private readonly DatabaseContext _context;
-        public GamesController(UserManager<UserModel> userManager, UserManager<UserModel> signInManager, DatabaseContext context)
+        private readonly IJSRuntime _jSRuntime;
+        public static HubConnection HubClient { get; set; }
+        public GamesController(UserManager<UserModel> userManager, UserManager<UserModel> signInManager, DatabaseContext context, IJSRuntime jSRuntime)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
+            _jSRuntime = jSRuntime;
         }
         public IActionResult Index()
         {
@@ -32,18 +38,36 @@ namespace RpgApplication.Controllers
             return View();
         }
         [HttpGet("ShowGame/{Id}")]
-        public IActionResult ShowGame(string Id)
+        public async Task <IActionResult> ShowGame(string Id)
         {
-            GameMessages myMessge = new GameMessages() { GameId = Id };
             var CurrentGame = _context.GameMessages
-                .Include(x => x.User)
-                .ThenInclude(x => x.Characters)
-                .Where(x => x.GameId == Id).ToList();
+               .Include(x => x.User)
+               .ThenInclude(x => x.Characters)
+               .Where(x => x.GameId == Id).ToList();
+
+            if (HubClient is null) 
+                HubClient = new HubConnectionBuilder().WithUrl(new Uri("http://localhost:6390/chatHub"))
+                    .Build();
+
+            if (HubClient.State==HubConnectionState.Disconnected)
+                await HubClient.StartAsync();
+
+            HubClient.On<string,string>("ReceiveMessage", (user,message) =>
+            {
+                CurrentGame.Add(new GameMessages { GameId = Id, Message = message, FromUserId = user, MessageDate = DateTime.Now });
+            });
+
+            GameMessages myMessge = new GameMessages() { GameId = Id };
             ViewBag.Messages = CurrentGame;
+            ViewBag.UserName = _signInManager.GetUserName(User);
+            string userId = _signInManager.GetUserId(User);
+            bool allowedUser = _context.GameUsers.Any(
+                x => x.GameId==Id && x.UserId == userId);
+            ViewBag.Allowed = allowedUser;
             return View(myMessge);
         }
         [HttpPost]
-        public IActionResult AddMessage(string GameId, string message, int Roll, int Dices)
+        public async Task<IActionResult> AddMessage(string GameId, string message, int Roll, int Dices)
         {
             Random rnd = new Random();
             int succeses = 0;
@@ -60,12 +84,14 @@ namespace RpgApplication.Controllers
                 else if (result + Roll > 9) succeses += 1;
                 else if (result==1) succeses -= 1;
             }
-            message = message + " [Wynik rzutu: " + succeses.ToString() + " ]";
+            if (Dices != 0 || Roll != 0)
+                message = message + " [Wynik rzutu: " + succeses.ToString() + "]";
             model.Message = message;
             model.FromUserId = _signInManager.GetUserId(User);
             model.MessageDate = DateTime.Now;
             _context.GameMessages.Add(model);
             _context.SaveChanges();
+            await HubClient.SendAsync("SendMessage", model.FromUserId, model.Message);
             return RedirectToAction(nameof(ShowGame), new { Id = model.GameId });
         }
         [HttpPost]
