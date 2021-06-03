@@ -15,7 +15,5 @@ namespace RpgApplication.Areas.Identity.Data
         public virtual IEnumerable<GameMessages> GameMessages { get; set; }
         public virtual IEnumerable<MistbornCharacterSheetModel> Characters { get; set; }
 
-
-
     }
 }
